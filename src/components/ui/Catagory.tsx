@@ -22,6 +22,7 @@ export default async function Catagory() {
         {catagory.map((item, index) => {
           return (
             <CatagoryItems
+              key={index}
               image={item.image}
               name={item.name}
               slug={item.slug.current}
