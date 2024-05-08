@@ -7,9 +7,11 @@ export default function Page() {
       <section className="bg-white">
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
           <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
-            <img
+            <Image
               alt=""
               src="/food_sign_in.webp"
+              height={500}
+              width={500}
               className="absolute inset-0 h-full w-full object-cover opacity-60"
             />
 
@@ -30,9 +32,9 @@ export default function Page() {
               </h2>
 
               <p className="mt-4 leading-relaxed text-white/90">
-                Nasir's food delivery app brings the world's flavors to your
-                fingertips, making every meal a culinary adventure delivered
-                straight to your door with speed and satisfaction.
+                Nasir&apos;s food delivery app brings the world&apos;s flavors
+                to your fingertips, making every meal a culinary adventure
+                delivered straight to your door with speed and satisfaction.
               </p>
             </div>
           </section>
