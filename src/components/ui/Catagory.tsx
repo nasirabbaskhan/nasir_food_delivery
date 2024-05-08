@@ -1,8 +1,8 @@
-import React from "react";
 import { client } from "../../../sanity/lib/client";
-import { Catagory as CatagoryItems } from "@/utils/type";
+import { CatagoryType } from "@/utils/type";
 import Image from "next/image";
 import { urlForImage } from "../../../sanity/lib/image";
+import CatagoryItems from "./CatagoryItems";
 
 const fetchCatagoryFromSanity = async () => {
   const res = await client.fetch(
@@ -15,30 +15,19 @@ const fetchCatagoryFromSanity = async () => {
   return res;
 };
 export default async function Catagory() {
-  const catagory: CatagoryItems[] = await fetchCatagoryFromSanity();
+  const catagory: CatagoryType[] = await fetchCatagoryFromSanity();
   return (
     <>
-      <div className="">
+      <div className="flex gap-3 mt-4 cursor-pointer">
         {catagory.map((item, index) => {
           return (
-            <span key={index}>
-              <div className="main flex flex-col justify-center border p-3 w-20">
-                <div className="">
-                  <Image
-                    src={urlForImage(item.image)}
-                    alt="image"
-                    width={500}
-                    height={500}
-                    className="w-16"
-                  />
-                </div>
-                <div className="">{item.name}</div>
-              </div>
-            </span>
+            <CatagoryItems
+              image={item.image}
+              name={item.name}
+              slug={item.slug.current}
+            />
           );
         })}
-
-        <div className="name"></div>
       </div>
     </>
   );

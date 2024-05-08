@@ -3,28 +3,25 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import {
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-  UserButton,
-  useUser,
-} from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Header() {
   const { user, isSignedIn } = useUser();
   return (
-    <div className="flex items-center justify-between py-2 shadow-lg px-3">
-      <div className="logo flex items-center justify-center gap-2">
-        <Image
-          src={"/logo.png"}
-          height={500}
-          width={500}
-          alt="logo"
-          className="md:w-16 w-10"
-        />
-        <p className="md:text-xl text-lg font-bold"> food app</p>
-      </div>
+    <div className="flex items-center justify-between py-2 shadow-sm px-3">
+      <Link href={"/"}>
+        <div className="logo flex items-center justify-center gap-2">
+          <Image
+            src={"/logo.png"}
+            height={500}
+            width={500}
+            alt="logo"
+            className="md:w-16 w-10"
+          />
+          <p className="md:text-xl text-lg font-bold"> food app</p>
+        </div>
+      </Link>
 
       <div className="hidden md:flex rounded-md p-2 border bg-gray-200 w-72 justify-between ">
         <input
