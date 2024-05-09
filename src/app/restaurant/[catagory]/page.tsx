@@ -35,6 +35,7 @@ export default async function Restaurant({
                     name={item.name}
                     country={item.country}
                     catagory={item.catagory}
+                    slug={item.slug.current}
                   />
                 </span>
               );

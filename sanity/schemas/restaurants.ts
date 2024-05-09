@@ -19,6 +19,22 @@ export const Restaurants = defineType({
       ],
     }),
     defineField({
+      name: "slug",
+
+      title: "Slug",
+
+      type: "slug",
+
+      options: {
+        source: "name",
+
+        maxLength: 200,
+
+        slugify: (input: string) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 20),
+      },
+    }),
+    defineField({
       name: "image",
       title: "Image",
       type: "image",

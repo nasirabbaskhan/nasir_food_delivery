@@ -19,7 +19,7 @@ export default function CatagoryItems(props: Iprops) {
             alt="image"
             width={500}
             height={500}
-            className="w-16"
+            className="w-12"
           />
         </div>
         <div className="">{props.name}</div>

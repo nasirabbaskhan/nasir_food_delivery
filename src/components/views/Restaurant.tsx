@@ -6,7 +6,7 @@ import RestuItems from "../ui/RestuItems";
 
 const fetchRestaurantFromSanity = async () => {
   const res = await client.fetch(
-    "*[_type=='restaurant']{description,image,_id,catagory,address,country,name}",
+    "*[_type=='restaurant']{description,image,_id,catagory,address,country,name,slug}",
     {},
     { cache: "no-cache" }
   );
@@ -15,11 +15,11 @@ const fetchRestaurantFromSanity = async () => {
 
 export default async function Restaurant() {
   const data: RestaurantType[] = await fetchRestaurantFromSanity();
-  console.log("aneela", data[0].name);
+
   return (
     <div className="main my-8">
       <h1 className="text-3xl font-bold">Popular all Restaurants</h1>
-      <p className="text-red-500 font-semibold">{data.length}1 Result</p>
+      <p className="text-red-500 font-semibold">{data.length} Result</p>
       <div className=" grid grid-cols-4 mt-5">
         {data.map((item, index) => {
           return (
@@ -29,6 +29,7 @@ export default async function Restaurant() {
                 name={item.name}
                 country={item.country}
                 catagory={item.catagory}
+                slug={item.slug.current}
               />
             </span>
           );

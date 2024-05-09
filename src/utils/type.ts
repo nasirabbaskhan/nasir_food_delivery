@@ -19,10 +19,21 @@ export interface IDescription {
   children: any[];
 }
 
+export type RestaurantSingleType = {
+  address: string;
+  country: string;
+  name: string;
+
+  description: IDescription[];
+  image: Image;
+
+  catagory: string;
+};
 export type RestaurantType = {
   address: string;
   country: string;
   name: string;
+  slug: Slug;
   description: IDescription[];
   image: Image;
   _id: string;
