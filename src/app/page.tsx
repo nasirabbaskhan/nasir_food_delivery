@@ -1,4 +1,5 @@
 import Catagory from "@/components/ui/Catagory";
+import FoodItems from "@/components/ui/FoodItems";
 import { Button } from "@/components/ui/button";
 import Restaurant from "@/components/views/Restaurant";
 import { SignIn, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <Catagory />
       <Restaurant />
+      <FoodItems />
     </>
   );
 }

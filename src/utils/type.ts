@@ -39,3 +39,14 @@ export type RestaurantType = {
   _id: string;
   catagory: string;
 };
+
+export type FoodItemsType = {
+  _id: string;
+  slug: Slug;
+  image: Image;
+  name: string;
+  price: string;
+  description: string;
+  type: string;
+  restaurantname: string;
+};

@@ -1,32 +1,37 @@
 "use client";
-
+import PortableText from "react-portable-text"; // to show sanity ritch text
 import { Star } from "lucide-react";
 import { useState } from "react";
 import FoodItemsCard from "./FoodItemsCard";
 import { Button } from "@/components/ui/button";
 import ReviewCardItems from "./ReviewCardItems";
+import { FoodItemsType, RestaurantType } from "@/utils/type";
 
-export default function CardDescription() {
-  const [selectedCatagory, SetSelectedCatagory] = useState(false);
+export default function CardDescription({
+  foodData,
+  data,
+}: {
+  foodData: FoodItemsType[];
+  data: RestaurantType[];
+}) {
+  // console.log("next aneela data", foodData);
+  const [selectedCatagory, SetSelectedCatagory] = useState(true);
   const [selectedAbout, SetSelectedAbout] = useState(false);
   const [selectedReviews, SetSelectedReviews] = useState(false);
   const handleCatagory = () => {
     SetSelectedCatagory(true);
     SetSelectedAbout(false);
     SetSelectedReviews(false);
-    console.log("clikjk");
   };
   const handleAbout = () => {
     SetSelectedCatagory(false);
     SetSelectedAbout(true);
     SetSelectedReviews(false);
-    console.log("clikjk");
   };
   const handleReviews = () => {
     SetSelectedCatagory(false);
     SetSelectedAbout(false);
     SetSelectedReviews(true);
-    console.log("clikjk");
   };
   return (
     <section>
@@ -36,7 +41,7 @@ export default function CardDescription() {
             onClick={handleCatagory}
             className={`text-md py-1 px-3  cursor-pointer rounded-md ${selectedCatagory ? "bg-white" : ""} `}
           >
-            Catagory
+            Food{" "}
           </p>
         </div>
         <div>
@@ -57,36 +62,21 @@ export default function CardDescription() {
         </div>
       </div>
       {selectedCatagory && (
-        <div className="catagory mb-16">
-          <div className="flex gap-5">
-            <div className="card hover:bg-gray-100  p-2 min-w-[266px] rounded-md mt-5 ">
-              Sandwiches
-            </div>
-            <div className="card text-xl mt-5  ">Sandwiches</div>
-          </div>
-
-          <div className="food mt-3 ml-72">
+        <div className="catagory mb-16 mt-5">
+          <div className="food mt-3 ">
             <div className="grid grid-cols-2 gap-3">
-              <FoodItemsCard
-                name="Black Forest Ham"
-                price={45}
-                description="jjhg bjjhsd mbhsd hhs bjh   jhhsd bsdbnbfbsdn"
-              />
-              <FoodItemsCard
-                name="Black Forest Ham"
-                price={45}
-                description="jjhg bjjhsd mbhsd hhs bjh   jhhsd bsdbnbfbsdn"
-              />
-              <FoodItemsCard
-                name="Black Forest Ham"
-                price={45}
-                description="jjhg bjjhsd mbhsd hhs bjh   jhhsd bsdbnbfbsdn"
-              />
-              <FoodItemsCard
-                name="Black Forest Ham"
-                price={45}
-                description="jjhg bjjhsd mbhsd hhs bjh   jhhsd bsdbnbfbsdn"
-              />
+              {foodData.map((item, index) => {
+                return (
+                  <>
+                    <FoodItemsCard
+                      name={item.name}
+                      price={item.price}
+                      description={item.description}
+                      id={item._id}
+                    />
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -94,15 +84,17 @@ export default function CardDescription() {
       {selectedAbout && (
         <div className="about mt-4">
           <h1 className="text-xl font-bold">About Me</h1>
-          <p className=" text-gray-700 mt-4 mb-12">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          {data?.map((item, index) => {
+            return (
+              <>
+                <PortableText
+                  content={item.description}
+                  className="leading-relaxed"
+                />
+                ;
+              </>
+            );
+          })}
         </div>
       )}
       {selectedReviews && (
@@ -121,13 +113,13 @@ export default function CardDescription() {
                 <Star className="fill-amber-300 size-14 " />
               </p>
               <textarea
-                className="border  w-full rounded  p-2"
+                className="border mt-3 w-full rounded  p-2"
                 name="textarea"
                 rows={3}
                 id="textarea"
               ></textarea>
-              <Button className="w-full mt-3" variant={"destructive"}>
-                Add
+              <Button className="w-full mt-7" variant={"destructive"}>
+                Submit
               </Button>
             </div>
 

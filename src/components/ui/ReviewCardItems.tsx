@@ -6,7 +6,7 @@ interface Iprops {
 }
 export default function ReviewCardItems(props: Iprops) {
   return (
-    <div className="card flex items-center gap-8 border rounded shadow-md p-2">
+    <div className="card flex items-center gap-8 border rounded shadow-md px-3 py-4">
       <Image
         src={"/an.jpg"}
         alt="img"

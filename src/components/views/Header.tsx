@@ -1,5 +1,5 @@
 "use client";
-import { Search } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
@@ -8,6 +8,8 @@ import Link from "next/link";
 
 export default function Header() {
   const { user, isSignedIn } = useUser();
+  const id = user?.id;
+  console.log("userNasirAneela", id);
   return (
     <div className="flex items-center justify-between py-2 shadow-sm px-3">
       <Link href={"/"}>
@@ -32,8 +34,16 @@ export default function Header() {
       </div>
 
       {isSignedIn ? (
-        <div className="w-16">
-          <UserButton />
+        <div className="main flex items-center gap-6">
+          <div className="addtocart">
+            <ShoppingCart className="cursor-pointer" />
+          </div>
+          <div className="rounded-full h-7 w-7 bg-gray-200 flex items-center justify-center">
+            <p className="">5</p>
+          </div>
+          <div className="w-16">
+            <UserButton />
+          </div>
         </div>
       ) : (
         <div className="signin flex gap-2 ">

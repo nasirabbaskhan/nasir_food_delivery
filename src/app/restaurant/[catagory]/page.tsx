@@ -15,7 +15,7 @@ export default async function Restaurant({
 }) {
   const data = (await resturentProducts(params.catagory)) as RestaurantType[];
 
-  console.log("aneelanasir", data);
+  // console.log("aneelanasir", data);
   return (
     <div>
       <Catagory />

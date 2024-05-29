@@ -8,3 +8,11 @@ export const fetchRestaurantFromSanity = async () => {
   );
   return res;
 };
+export const fetchFoodItemsSanity = async () => {
+  const res = await client.fetch(
+    "*[_type=='food']{name,description,type,restaurantname,_id,slug,image,price}",
+    {},
+    { cache: "no-cache" }
+  );
+  return res;
+};
