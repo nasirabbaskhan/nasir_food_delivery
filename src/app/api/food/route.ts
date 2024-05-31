@@ -52,7 +52,7 @@ export const POST = async (request: NextRequest) => {
       const updatedata = {
         userid: validatedBody.userid,
         foodid: validatedBody.foodid,
-        quantity: (alreadyData[0].quantity as number) + 1,
+        quantity: validatedBody.quantity,
       };
       await db
         .update(foodTable)

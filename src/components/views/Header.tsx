@@ -3,13 +3,16 @@ import { Search, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton,} from "@clerk/nextjs";
+import {useUser} from "@clerk/clerk-react"
 import Link from "next/link";
 
 export default function Header() {
   const { user, isSignedIn } = useUser();
   const id = user?.id;
-  console.log("userNasirAneela", id);
+  console.log("userNasirAneela", user?.firstName);
+  console.log("isSignedIn", isSignedIn);
+
   return (
     <div className="flex items-center justify-between py-2 shadow-sm px-3">
       <Link href={"/"}>
@@ -21,7 +24,7 @@ export default function Header() {
             alt="logo"
             className="md:w-16 w-10"
           />
-          <p className="md:text-xl text-lg font-bold"> food app</p>
+          <p className="md:text-xl text-lg font-bold"> food app </p>
         </div>
       </Link>
 
@@ -36,7 +39,7 @@ export default function Header() {
       {isSignedIn ? (
         <div className="main flex items-center gap-6">
           <div className="addtocart">
-            <ShoppingCart className="cursor-pointer" />
+          <Link href={"/cart"}> <ShoppingCart className="cursor-pointer" /></Link> 
           </div>
           <div className="rounded-full h-7 w-7 bg-gray-200 flex items-center justify-center">
             <p className="">5</p>

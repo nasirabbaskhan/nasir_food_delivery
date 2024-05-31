@@ -69,6 +69,7 @@ export default function CardDescription({
                 return (
                   <>
                     <FoodItemsCard
+                    key={index}
                       name={item.name}
                       price={item.price}
                       description={item.description}
@@ -87,7 +88,9 @@ export default function CardDescription({
           {data?.map((item, index) => {
             return (
               <>
+              
                 <PortableText
+                key={index}
                   content={item.description}
                   className="leading-relaxed"
                 />

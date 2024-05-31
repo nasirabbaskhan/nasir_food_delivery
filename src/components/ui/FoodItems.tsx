@@ -4,7 +4,7 @@ import { fetchInternalImage } from "next/dist/server/image-optimizer";
 import React from "react";
 
 const food: FoodItemsType[] = await fetchFoodItemsSanity();
-// console.log("aneela Food", food);
+console.log("", food);
 
 export default function FoodItems() {
   return (
