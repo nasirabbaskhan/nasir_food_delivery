@@ -78,46 +78,47 @@ export const POST = async (request: NextRequest) => {
   }
 };
 
-// export const PUT = async (request: NextRequest) => {
-//   const req = await request.json();
-//   const validatedBody = validatePostData.parse(req);
-//   try {
-//     const res = await db
-//       .update(foodTable)
-//       .set(validatedBody)
-//       .where(
-//         and(
-//           eq(foodTable.userid, validatedBody.userid),
-//           eq(foodTable.productid, validatedBody.productid)
-//         )
-//       )
-//       .returning();
-//     return NextResponse.json("OK");
-//   } catch (error) {
-//     //console.log((error as { message: string }).message);
-//     return NextResponse.json({ error: (error as { message: string }).message });
-//   }
-// };
+export const PUT = async (request: NextRequest) => {
+  const req = await request.json();
+  console.log("reqss",req.userid)
+  console.log("reqssproductid",req.productid)
+  console.log("reqssproductid",req.quantity)
+  // const validatedBody = validatePostData.parse(req);
+  
+  try {
+    const res = await db
+      .update(foodTable)
+      .set({quantity:req.quantity})
+      .where(
+        and(
+          eq(foodTable.userid, req.userid),
+          eq(foodTable.foodid, req.productid)
+        )
+      )
+      .returning();
+    return NextResponse.json(res);
+  } catch (error) {
+    //console.log((error as { message: string }).message);
+    return NextResponse.json({ error: (error as { message: string }).message });
+  }
+};
 
-// export const DELETE = async (request: NextRequest) => {
-//   const url = request.nextUrl.searchParams;
-//   const user_id = url.get("userid") as string;
-//   const product_id = url.get("productid") as string;
-//   const { userid, productid } = validateDelete.parse({
-//     userid: user_id,
-//     productid: product_id,
-//   });
+export const DELETE = async (request: NextRequest) => {
+  const url = request.nextUrl.searchParams;
+  const user_id = url.get("userid") as string;
+  const product_id = url.get("productid") as string;
+  
 
-//   try {
-//     await db
-//       .delete(foodTable)
-//       .where(
-//         and(eq(foodTable.userid, userid), eq(foodTable.productid, productid))
-//       )
-//       .returning();
-//     return NextResponse.json("OK");
-//   } catch (error) {
-//     //console.log((error as { message: string }).message);
-//     return NextResponse.json({ error: (error as { message: string }).message });
-//   }
-// };
+  try {
+    await db
+      .delete(foodTable)
+      .where(
+        and(eq(foodTable.userid, user_id), eq(foodTable.foodid, product_id))
+      )
+      .returning();
+    return NextResponse.json("OK");
+  } catch (error) {
+    //console.log((error as { message: string }).message);
+    return NextResponse.json({ error: (error as { message: string }).message });
+  }
+};

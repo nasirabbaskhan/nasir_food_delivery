@@ -50,3 +50,8 @@ export type FoodItemsType = {
   type: string;
   restaurantname: string;
 };
+
+export interface allFoodItemsType {
+  query: string;
+  result: FoodItemsType[];
+}
