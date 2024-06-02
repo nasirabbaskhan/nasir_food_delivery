@@ -6,6 +6,7 @@ import {
 import { FoodItemsType, RestaurantType } from "@/utils/type";
 import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
+import { urlForImage } from "../../../../sanity/lib/image";
 
 const foodItems: FoodItemsType[] = await fetchFoodItemsSanity();
 const resturents: RestaurantType[] = await fetchRestaurantFromSanity();
@@ -25,6 +26,7 @@ export default async function Description({
 }) {
   const data = (await productDescription(params.slug)) as RestaurantType[];
   const foodData: FoodItemsType[] = await foodItem(params.slug);
+  
   // console.log("aneelaaanag", foodData);
 
   // console.log("weldon", data);
@@ -37,7 +39,7 @@ export default async function Description({
             <span key={index}>
               <div className="img">
                 <Image
-                  src={"/food_sign_in.webp"}
+                  src={urlForImage(item.image)}
                   alt="image"
                   height={500}
                   width={500}

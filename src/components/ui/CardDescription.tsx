@@ -74,6 +74,7 @@ export default function CardDescription({
                       price={item.price}
                       description={item.description}
                       id={item._id}
+                      image={item.image}
                     />
                   </>
                 );

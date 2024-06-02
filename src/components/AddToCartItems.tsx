@@ -9,9 +9,13 @@ import { useUser } from "@clerk/clerk-react";
 import { ToastAction } from '@radix-ui/react-toast';
 import { toast } from './ui/use-toast';
 import refreshData from '@/utils/action';
+import { useRouter } from "next/navigation";
+
 
 export default function AddToCartItems({productdata,data}:{productdata:FoodItemsType[], data:food[]}) {
     const { isSignedIn, user, } = useUser();
+    const { refresh } = useRouter();
+
   const id= user?.id as string | null
     const deleteCartItemfromDB = async(id:string | null,productId:string)=>{
        
@@ -27,9 +31,8 @@ export default function AddToCartItems({productdata,data}:{productdata:FoodItems
             variant: "destructive",
             action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
           });
-         await refreshData()
-         await refreshData();
-
+          refresh();
+   
     }
 
 

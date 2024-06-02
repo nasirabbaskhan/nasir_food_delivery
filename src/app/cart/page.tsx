@@ -1,8 +1,11 @@
 "use client";
 import CartMain from "@/components/CartMain";
 import { food } from "@/lib/drizzle";
+import refreshData from "@/utils/action";
 import { useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 type Data={
   id:number,
   userid:string,
@@ -13,6 +16,9 @@ export default function Home() {
   const [data, setData] = useState([]);
   const { isSignedIn, user, } = useUser();
   const id= user?.id as string | null
+  const { refresh } = useRouter();
+
+  
 
   useEffect(() => {
     if (isSignedIn && user) {
@@ -27,9 +33,11 @@ export default function Home() {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
+            refresh()
       };
 
       fetchData(id);
+       
     }
   }, [isSignedIn, user]);
   console.log("data", JSON.stringify(data))
@@ -37,15 +45,14 @@ export default function Home() {
   if (isSignedIn) {
     return (
       <div>
-        Hello {user.fullName}! Your user ID is {user.id}.
-        <div>Data: {JSON.stringify(data)}</div>
+    
         
         <CartMain data={data}/>
       </div>
     );
   }
 
-  return <div>Not signed in</div>;
+
 }
 
 

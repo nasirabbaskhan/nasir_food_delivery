@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { client } from '../../sanity/lib/client';
 import AddToCartItems from './AddToCartItems';
 import SummeryPricing from './SummeryPricing';
+import refreshData from '@/utils/action';
 
 
 
@@ -22,7 +23,7 @@ export default function CartMain({data}:{data:food[]}) {
         {},
         { cache: "no-cache" }
       );
-
+      await refreshData()
       return res
     };
     
@@ -57,7 +58,7 @@ export default function CartMain({data}:{data:food[]}) {
         <ShoppingBagIcon color="purple" size={42} className="mx-auto" />
         <h2 className="text-2xl text-gray-600 font-semibold mx-auto">
           Cart is Empty,{" "}
-          <Link href={"/products"} className="text-xl ">
+          <Link href={"/"} className="text-xl ">
             {" "}
             Brows Products
           </Link>
